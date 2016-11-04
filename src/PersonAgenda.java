@@ -4,14 +4,16 @@ public class PersonAgenda {
     static int index=0;
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("Phone Directory");
         int option=0;
 
         do {
 
             // afisare meniu
-            System.out.println("1.fa aia");
-            System.out.println("1.fa ailalta");
+            System.out.println("1.Add person");
+            System.out.println("2.Display persons");
+            System.out.println("3.Delete person");
+            System.out.println("4 Modify person");
 
 
             //selectare optiune
@@ -20,11 +22,13 @@ public class PersonAgenda {
             switch (option) {
                 case 1: add();break;
                 case 2: print();break;
+                case 3: del();break;
+                case 4: modify();break;
             }
 
 
         }
-        while(option!=4);
+        while(option!=5);
 
     }
 
@@ -39,8 +43,8 @@ public class PersonAgenda {
             String number = SkeletonJava.readStringConsole("Input the number:");
 
             Person p = new Person();
-            p.name=name;
-            p.phoneNumber=number;
+            p.name = name;
+            p.phoneNumber = number;
             listName[index] = p;
             index++;
         }
@@ -51,11 +55,21 @@ public class PersonAgenda {
     }
 
     static void print() {
-
+        for (int i=0; i<listName.length; i++){
+            if(listName[i]!=null){
+                System.out.println("Name:"+listName[i].name);
+                System.out.println("Phone number:"+listName[i].phoneNumber);
+            }
+        }
     }
 
     static void del() {
-
+        String name = SkeletonJava.readStringConsole("Input the name:");
+        for (int i=0; i<listName.length; i++){
+            if (listName[i]!=null&&listName[i].name.equals(name)){
+              listName[i]=null;
+            }
+        }
         // citeste un nume
         // il cauta in array
         //daca il gaseste il sterge  asa listName[unde l-a gasit]=null sau "";
@@ -63,7 +77,13 @@ public class PersonAgenda {
     }
 
     static void modify() {
-
+        String name = SkeletonJava.readStringConsole("Input the name:");
+        for (int i=0; i<listName.length; i++){
+            if (listName[i]!=null&&listName[i].name.equals(name)){
+                String newname = SkeletonJava.readStringConsole("Input the new name:");
+                listName[i].name=newname;
+            }
+        }
         // citeste un nume
         // il cauta in array
         // daca il gaseste cere noul nume si il substituie pe cel vechi cu cel nou
