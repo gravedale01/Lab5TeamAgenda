@@ -1,6 +1,6 @@
 public class PersonAgenda {
 
-    static Person[] listName = new Person[2]; // store the names
+    static Person[] listName = new Person[3]; // store the names
     static int index=0;
 
     public static void main(String[] args) {
@@ -34,24 +34,38 @@ public class PersonAgenda {
 
     static void add() {
 
+        boolean forEmpty = false;
+
         // de optimizat cand se umple agenda
 
         // de optimizat daca deja exista o pers cu acel nume
 
-        if(index<listName.length) {
-            String name = SkeletonJava.readStringConsole("Input the name:");
-            String number = SkeletonJava.readStringConsole("Input the number:");
-
-            Person p = new Person();
-            p.name = name;
-            p.phoneNumber = number;
+        if (index < listName.length) {
+            Person p = getPerson();
             listName[index] = p;
             index++;
+        } else {
+            for (int i = 0; i < listName.length; i++) {
+                if (listName[i] == null) {
+                    Person p = getPerson();
+                    listName[i] = p;
+                    forEmpty = true;
+                }
+            }
+                if (!forEmpty)
+                    System.out.println("nu mai sunt locuri");
+
         }
-        else
-        {
-            System.out.println("gata memoria, schimba telul ");
-        }
+    }
+
+    private static Person getPerson() {
+        String name = SkeletonJava.readStringConsole("Input the name:");
+        String number = SkeletonJava.readStringConsole("Input the number:");
+
+        Person p = new Person();
+        p.name = name;
+        p.phoneNumber = number;
+        return p;
     }
 
     static void print() {
