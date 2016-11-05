@@ -44,12 +44,13 @@ public class PersonAgenda {
             Person p = getPerson();
             listName[index] = p;
             index++;
-        } else {
+        } else { // ,am ajuns la final de array, caut locuri intre cele sterse
             for (int i = 0; i < listName.length; i++) {
                 if (listName[i] == null) {
                     Person p = getPerson();
                     listName[i] = p;
                     forEmpty = true;
+                    break;
                 }
             }
                 if (!forEmpty)
